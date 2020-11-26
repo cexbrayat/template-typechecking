@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello" @click="wave()">
     <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
@@ -34,9 +34,17 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'HelloWorld',
+  emits: {
+    wave: () => true
+  },
   props: {
     msg: String,
   },
+  setup(props, { emit }) {
+    return {
+      wave: () => emit('wave')
+    }
+  }
 });
 </script>
 
